@@ -40,7 +40,7 @@ public class applicationIncidents {
         incidentsVols.createOrReplaceTempView("incidentsYearMonth");
         int currentYear = LocalDate.now().getYear();
         Dataset<Row> totalIncidentsByAvionMonth = sparkSession.sql("SELECT Month, count(*) AS TotalIncident from incidentsYearMonth where Year = '"
-                +currentYear+"' group by Month  order by TotalIncident desc limit 2");
+                +currentYear+"' group by Month  order by TotalIncident asc limit 2");
 
         totalIncidentsByAvionMonth.show();
 
